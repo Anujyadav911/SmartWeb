@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartWeb Form Assistant</title>
+  <link rel="stylesheet" href="popup.css"/>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="brand-icon">⚡</div>
+      <div class="brand-text">
+        <span class="brand-name">SmartWeb</span>
+        <span class="brand-sub">Form Intelligence</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="mv3-badge">MV3</span>
+    </div>
+  </header>
+
+  <!-- ── MAIN ────────────────────────────────────────────────────── -->
+  <main id="main">
+
+    <!-- View: Welcome / Initial -->
+    <div id="view-initial" class="view-centered">
+      <div class="hero-glyph">🔍</div>
+      <h2 class="hero-title">Intelligent Form Assistant</h2>
+      <p class="hero-desc">
+        SmartWeb detects, classifies and intelligently suggests values
+        for every form field — without automating away your control.
+      </p>
+      <button class="btn btn-primary btn-wide" id="btn-scan">⚡ Scan Page</button>
+    </div>
+
+    <!-- View: Scanning / Loading -->
+    <div id="view-loading" class="view-centered" style="display:none;">
+      <div class="ring-loader"></div>
+      <p class="loader-msg" id="loader-msg">Analyzing page structure…</p>
+    </div>
+
+    <!-- View: Results Dashboard -->
+    <div id="view-results" style="display:none;">
+
+      <!-- DOM-change banner -->
+      <div class="banner banner-warn" id="dom-banner" style="display:none;">
+        <span>⚠️ Page content changed</span>
+        <button class="btn-link" id="btn-rescan-banner">Re-scan →</button>
+      </div>
+
+      <!-- Stats dashboard row -->
+      <div class="stats-row" id="stats-row">
+        <div class="stat-block">
+          <span class="stat-num" id="stat-total">0</span>
+          <span class="stat-lbl">Fields</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-cats" id="stat-cats"></div>
+        <button class="rescan-btn" id="btn-rescan" title="Re-scan page">↻</button>
+      </div>
+
+      <!-- Tier filter tabs -->
+      <div class="tier-tabs" id="tier-tabs">
+        <button class="tier-tab active" data-filter="all">All</button>
+        <button class="tier-tab" data-filter="HIGH">
+          <span class="tab-dot dot-high"></span>High
+        </button>
+        <button class="tier-tab" data-filter="MEDIUM">
+          <span class="tab-dot dot-med"></span>Medium
+        </button>
+        <button class="tier-tab" data-filter="LOW">
+          <span class="tab-dot dot-low"></span>Low
+        </button>
+      </div>
+
+      <!-- Field cards -->
+      <div id="field-list"></div>
+
+    </div>
+
+    <!-- View: Error -->
+    <div id="view-error" class="view-centered" style="display:none;">
+      <div class="hero-glyph">⚠️</div>
+      <h2 class="hero-title">Cannot Access Page</h2>
+      <p class="hero-desc" id="error-msg">
+        Navigate to a regular website with a form, then try again.
+      </p>
+      <button class="btn btn-primary btn-wide" id="btn-retry">↻ Try Again</button>
+    </div>
+
+    <!-- View: No Fields -->
+    <div id="view-empty" class="view-centered" style="display:none;">
+      <div class="hero-glyph">📭</div>
+      <h2 class="hero-title">No Fields Detected</h2>
+      <p class="hero-desc">
+        No visible, fillable form fields found on this page.
+        Navigate to a form and try again.
+      </p>
+      <button class="btn btn-primary btn-wide" id="btn-retry-empty">↻ Retry</button>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER: APPLY ALL ────────────────────────────────────────── -->
+  <footer class="footer" id="footer" style="display:none;">
+    <button class="btn btn-apply-all" id="btn-apply-all">
+      ✨ Apply All High-Confidence
+    </button>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
